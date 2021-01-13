@@ -37,7 +37,8 @@ namespace NASAapp.Controllers
                 apod.Explanation = resultat.explanation;
                 apod.MediaType = resultat.media_type;
                 apod.Url = resultat.url;
-                apod.Date = resultat.date;
+                DateTime dateTime = resultat.date;
+                apod.Date = dateTime.ToString("dd/MM/yyyy");
             }
             return View(apod);
         }
