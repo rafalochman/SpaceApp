@@ -4,7 +4,8 @@
 @model NASAapp.Models.Apod
 
 <div class="text-center">
-    <h1 class="display-4">@Model.Title</h1>
+    <h1 class="display-4">@Model.Title</h1> 
+    <h5> Image of the Day @Model.Date</h5>
     <div id="mediaContainer">
         @if (Model.MediaType == "image")
         {
