@@ -26,7 +26,7 @@ namespace NASAapp.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.nasa.gov/planetary/");
-                HttpResponseMessage response = client.GetAsync("apod?api_key=DEMO_KEY").Result; ;
+                HttpResponseMessage response = client.GetAsync("apod?api_key=DEMO_KEY").Result; 
                 response.EnsureSuccessStatusCode();
 
                 string content = response.Content.ReadAsStringAsync().Result;

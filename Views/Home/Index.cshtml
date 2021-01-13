@@ -1,8 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model NASAapp.Models.Apod
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Model.Title</h1>
+    <div id="mediaContainer">
+        @if (Model.MediaType == "image")
+        {
+            <img id="videoIframe" src="@Model.Url" alt="@Model.Title">
+        }
+        @if (Model.MediaType == "video")
+        {
+            <iframe id="videoIframe" src="@Model.Url"></iframe>
+        }
+    </div>
+
+    <p>@Model.Explanation</p>
 </div>
