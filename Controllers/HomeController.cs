@@ -22,23 +22,30 @@ namespace NASAapp.Controllers
 
         public IActionResult Index()
         {
-            Apod apod;
+            Apod apod = new Apod();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.nasa.gov/planetary/");
-                HttpResponseMessage response = client.GetAsync("apod?api_key=DEMO_KEY").Result; 
-                response.EnsureSuccessStatusCode();
+                try
+                {
+                    HttpResponseMessage response = client.GetAsync("apod?api_key=DEMO_KEY").Result;
+                    response.EnsureSuccessStatusCode();
 
-                string content = response.Content.ReadAsStringAsync().Result;
-                dynamic resultat = JsonConvert.DeserializeObject(content);
+                    string content = response.Content.ReadAsStringAsync().Result;
+                    dynamic resultat = JsonConvert.DeserializeObject(content);
 
-                apod = new Apod();
-                apod.Title = resultat.title;
-                apod.Explanation = resultat.explanation;
-                apod.MediaType = resultat.media_type;
-                apod.Url = resultat.url;
-                DateTime dateTime = resultat.date;
-                apod.Date = dateTime.ToString("dd/MM/yyyy");
+                    apod.Title = resultat.title;
+                    apod.Explanation = resultat.explanation;
+                    apod.MediaType = resultat.media_type;
+                    apod.Url = resultat.url;
+                    DateTime dateTime = resultat.date;
+                    apod.Date = dateTime.ToString("dd/MM/yyyy");
+                }
+                catch(Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+               
             }
             return View(apod);
         }
