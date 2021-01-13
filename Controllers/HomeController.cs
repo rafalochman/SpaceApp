@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NASAapp.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace NASAapp.Controllers
@@ -20,7 +22,24 @@ namespace NASAapp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Apod apod;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://api.nasa.gov/planetary/");
+                HttpResponseMessage response = client.GetAsync("apod?api_key=DEMO_KEY").Result; ;
+                response.EnsureSuccessStatusCode();
+
+                string content = response.Content.ReadAsStringAsync().Result;
+                dynamic resultat = JsonConvert.DeserializeObject(content);
+
+                apod = new Apod();
+                apod.Title = resultat.title;
+                apod.Explanation = resultat.explanation;
+                apod.MediaType = resultat.media_type;
+                apod.Url = resultat.url;
+                apod.Date = resultat.date;
+            }
+            return View(apod);
         }
 
         public IActionResult Privacy()
