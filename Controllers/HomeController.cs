@@ -45,7 +45,7 @@ namespace NASAapp.Controllers
                 }
                 catch(Exception e)
                 {
-                    Debug.WriteLine(e);
+                    _logger.LogError("Error: " + e);
                 }
                
             }
@@ -104,7 +104,7 @@ namespace NASAapp.Controllers
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e);
+                    _logger.LogError("Error: " + e);
                 }
 
             }
@@ -157,7 +157,7 @@ namespace NASAapp.Controllers
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e);
+                    _logger.LogError("Error: " + e);
                 }
 
             }
