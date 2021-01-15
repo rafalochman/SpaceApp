@@ -100,7 +100,7 @@ namespace NASAapp.Controllers
                         Math.Round(asteroid.MissDistance, 2);
                         asteroidList.Add(asteroid);
                     }
-                    
+                    asteroidList.Sort((x, y) => x.Time.CompareTo(y.Time));
                 }
                 catch (Exception e)
                 {
