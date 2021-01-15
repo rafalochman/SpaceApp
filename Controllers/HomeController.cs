@@ -64,7 +64,7 @@ namespace NASAapp.Controllers
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
-                    content = content.Replace("2021-01-15", "date");
+                    content = content.Replace(DateTime.Now.ToString("yyyy-MM-dd"), "date");
 
                     dynamic resultat = JsonConvert.DeserializeObject(content);
                     var asteroids = resultat.near_earth_objects.date;

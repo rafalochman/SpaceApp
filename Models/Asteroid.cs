@@ -7,13 +7,13 @@ namespace NASAapp.Models
 {
     public class Asteroid
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string EstimatedDiameterMin { get; set; }
-        public string EstimatedDiameterMax { get; set; }
-        public string Hazardous { get; set; }
-        public string ApproachDate { get; set; }
-        public string RelativeVelocity { get; set; }
-        public string MissDistance { get; set; }
+        public double EstimatedDiameterMin { get; set; }
+        public double EstimatedDiameterMax { get; set; }
+        public bool Hazardous { get; set; }
+        public DateTime ApproachDate { get; set; }
+        public double RelativeVelocity { get; set; }
+        public double MissDistance { get; set; }
     }
 }
