@@ -55,13 +55,12 @@ namespace NASAapp.Controllers
         public IActionResult Asteroids()
         {
             List<Asteroid> asteroidList = new List<Asteroid>();
-           
+            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.nasa.gov/neo/rest/v1/feed");
                 try
                 {
-                    string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
                     HttpResponseMessage response = client.GetAsync("?start_date=" + currentDate + "&end_date=" + currentDate + "&api_key=DEMO_KEY").Result;
                     response.EnsureSuccessStatusCode();
 
@@ -91,7 +90,7 @@ namespace NASAapp.Controllers
                         asteroid.EstimatedDiameterMax = asteroidsList[i].estimated_diameter.meters.estimated_diameter_max;
                         asteroid.Hazardous = asteroidsList[i].is_potentially_hazardous_asteroid;
                         DateTime time = approachList[i].close_approach_date_full;
-                        asteroid.ApproachDate = time.ToString("HH:mm");
+                        asteroid.Time = time.ToString("HH:mm");
                         asteroid.RelativeVelocity = approachList[i].relative_velocity.kilometers_per_second;
                         asteroid.MissDistance = approachList[i].miss_distance.kilometers;
                         asteroidList.Add(asteroid);
