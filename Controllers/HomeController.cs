@@ -61,11 +61,12 @@ namespace NASAapp.Controllers
                 client.BaseAddress = new Uri("https://api.nasa.gov/neo/rest/v1/feed");
                 try
                 {
-                    HttpResponseMessage response = client.GetAsync("?start_date=2021-01-15&end_date=2021-01-15&api_key=DEMO_KEY").Result;
+                    string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    HttpResponseMessage response = client.GetAsync("?start_date=" + currentDate + "&end_date=" + currentDate + "&api_key=DEMO_KEY").Result;
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
-                    content = content.Replace(DateTime.Now.ToString("yyyy-MM-dd"), "date");
+                    content = content.Replace(currentDate, "date");
 
                     dynamic resultat = JsonConvert.DeserializeObject(content);
                     var asteroids = resultat.near_earth_objects.date;
