@@ -2,11 +2,13 @@
 using Microsoft.Extensions.Logging;
 using NASAapp.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NASAapp.Controllers
@@ -50,9 +52,50 @@ namespace NASAapp.Controllers
             return View(apod);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Asteroids()
         {
-            return View();
+            Asteroid asteroid = new Asteroid();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://api.nasa.gov/neo/rest/v1/feed");
+                try
+                {
+                    HttpResponseMessage response = client.GetAsync("?start_date=2021-01-15&end_date=2021-01-15&api_key=DEMO_KEY").Result;
+                    response.EnsureSuccessStatusCode();
+
+                    string content = response.Content.ReadAsStringAsync().Result;
+                    content = content.Replace("2021-01-15", "date");
+
+                    dynamic resultat = JsonConvert.DeserializeObject(content);
+                    var asteroids = resultat.near_earth_objects.date;
+                    List<dynamic> asteroidsList = new List<dynamic>();
+                    List<dynamic> approachList = new List<dynamic>();
+                    foreach (JObject ast in asteroids)
+                    {
+                        dynamic temp = JsonConvert.DeserializeObject(ast.ToString());
+                        asteroidsList.Add(temp);
+                        foreach (JObject dat in temp.close_approach_data)
+                        {
+                            approachList.Add(JsonConvert.DeserializeObject(dat.ToString()));
+                        }
+                    }
+                   
+                    asteroid.Id = asteroidsList[0].id;
+                    asteroid.Name = asteroidsList[0].name;
+                    asteroid.EstimatedDiameterMin = asteroidsList[0].estimated_diameter.meters.estimated_diameter_min;
+                    asteroid.EstimatedDiameterMax = asteroidsList[0].estimated_diameter.meters.estimated_diameter_max;
+                    asteroid.Hazardous = asteroidsList[0].is_potentially_hazardous_asteroid;
+                    asteroid.ApproachDate = approachList[0].close_approach_date_full;
+                    asteroid.RelativeVelocity = approachList[0].relative_velocity.kilometers_per_second;
+                    asteroid.MissDistance = approachList[0].miss_distance.kilometers;
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+
+            }
+            return View(asteroid);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
