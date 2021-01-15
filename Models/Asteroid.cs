@@ -11,8 +11,8 @@ namespace NASAapp.Models
         public string Name { get; set; }
         public double EstimatedDiameterMin { get; set; }
         public double EstimatedDiameterMax { get; set; }
-        public bool Hazardous { get; set; }
-        public DateTime ApproachDate { get; set; }
+        public string Hazardous { get; set; }
+        public string ApproachDate { get; set; }
         public double RelativeVelocity { get; set; }
         public double MissDistance { get; set; }
     }

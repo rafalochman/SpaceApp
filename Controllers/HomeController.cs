@@ -54,7 +54,8 @@ namespace NASAapp.Controllers
 
         public IActionResult Asteroids()
         {
-            Asteroid asteroid = new Asteroid();
+            List<Asteroid> asteroidList = new List<Asteroid>();
+           
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://api.nasa.gov/neo/rest/v1/feed");
@@ -79,15 +80,22 @@ namespace NASAapp.Controllers
                             approachList.Add(JsonConvert.DeserializeObject(dat.ToString()));
                         }
                     }
-                   
-                    asteroid.Id = asteroidsList[0].id;
-                    asteroid.Name = asteroidsList[0].name;
-                    asteroid.EstimatedDiameterMin = asteroidsList[0].estimated_diameter.meters.estimated_diameter_min;
-                    asteroid.EstimatedDiameterMax = asteroidsList[0].estimated_diameter.meters.estimated_diameter_max;
-                    asteroid.Hazardous = asteroidsList[0].is_potentially_hazardous_asteroid;
-                    asteroid.ApproachDate = approachList[0].close_approach_date_full;
-                    asteroid.RelativeVelocity = approachList[0].relative_velocity.kilometers_per_second;
-                    asteroid.MissDistance = approachList[0].miss_distance.kilometers;
+                    int size = resultat.element_count;
+                    for (int i = 0; i < size; i++)
+                    {
+                        Asteroid asteroid = new Asteroid();
+                        asteroid.Id = asteroidsList[i].id;
+                        asteroid.Name = asteroidsList[i].name;
+                        asteroid.EstimatedDiameterMin = asteroidsList[i].estimated_diameter.meters.estimated_diameter_min;
+                        asteroid.EstimatedDiameterMax = asteroidsList[i].estimated_diameter.meters.estimated_diameter_max;
+                        asteroid.Hazardous = asteroidsList[i].is_potentially_hazardous_asteroid;
+                        DateTime time = approachList[i].close_approach_date_full;
+                        asteroid.ApproachDate = time.ToString("HH:mm");
+                        asteroid.RelativeVelocity = approachList[i].relative_velocity.kilometers_per_second;
+                        asteroid.MissDistance = approachList[i].miss_distance.kilometers;
+                        asteroidList.Add(asteroid);
+                    }
+                    
                 }
                 catch (Exception e)
                 {
@@ -95,7 +103,7 @@ namespace NASAapp.Controllers
                 }
 
             }
-            return View(asteroid);
+            return View(asteroidList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,23 +1,53 @@
 ﻿@{
     ViewData["Title"] = "Asteroids";
 }
-@model NASAapp.Models.Asteroid
+@model IEnumerable<NASAapp.Models.Asteroid>
 
 <h1>@ViewData["Title"]</h1>
 
+<table class="table table-hover">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Min Estimated Diameter
+        </th>
+        <th>
+            Max Estimated Diameter
+        </th>
+        <th>
+            Hazardous
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+        </th>
+    </tr>
 
-@Model.Id
-<br />
-@Model.Name
-<br />
-@Model.EstimatedDiameterMin
-<br />
-@Model.EstimatedDiameterMax
-<br />
-@Model.Hazardous
-<br />
-@Model.ApproachDate
-<br />
-@Model.RelativeVelocity
-<br />
-@Model.MissDistance
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EstimatedDiameterMin)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EstimatedDiameterMax)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Hazardous)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApproachDate)
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = item.Id })
+    </td>
+</tr>
+    }
+
+</table>
