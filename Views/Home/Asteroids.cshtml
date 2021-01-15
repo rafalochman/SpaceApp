@@ -3,7 +3,8 @@
 }
 @model IEnumerable<NASAapp.Models.Asteroid>
 
-<h1>@ViewData["Title"]</h1>
+<h1>@ViewData["Title"] which miss Earth today</h1>
+<br />
 
 <table class="table table-hover">
     <tr>
@@ -20,9 +21,13 @@
             Hazardous
         </th>
         <th>
-            Time
+            Relative velocity
         </th>
         <th>
+            Miss distance
+        </th>
+        <th>
+            Time
         </th>
     </tr>
 
@@ -33,19 +38,22 @@
         @Html.DisplayFor(modelItem => item.Name)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.EstimatedDiameterMin)
+        @Html.DisplayFor(modelItem => item.EstimatedDiameterMin) m
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.EstimatedDiameterMax)
+        @Html.DisplayFor(modelItem => item.EstimatedDiameterMax) m
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Hazardous)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Time)
+        @Html.DisplayFor(modelItem => item.RelativeVelocity) km/s
     </td>
     <td>
-        @Html.ActionLink("Details", "Details", new { id = item.Id })
+        @Html.DisplayFor(modelItem => item.MissDistance) km
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Time)
     </td>
 </tr>
     }

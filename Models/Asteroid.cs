@@ -9,11 +9,11 @@ namespace NASAapp.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double EstimatedDiameterMin { get; set; }
-        public double EstimatedDiameterMax { get; set; }
+        public decimal EstimatedDiameterMin { get; set; }
+        public decimal EstimatedDiameterMax { get; set; }
         public string Hazardous { get; set; }
         public string Time { get; set; }
-        public double RelativeVelocity { get; set; }
-        public double MissDistance { get; set; }
+        public decimal RelativeVelocity { get; set; }
+        public decimal MissDistance { get; set; }
     }
 }
