@@ -30,6 +30,7 @@
         <th>
             Time
         </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -55,6 +56,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.ActionLink("History", "History", new { id = item.Id })
             </td>
         </tr>
     }

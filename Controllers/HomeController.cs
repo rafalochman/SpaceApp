@@ -111,6 +111,59 @@ namespace NASAapp.Controllers
             return View(asteroidList);
         }
 
+        public IActionResult History(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Asteroids");
+            }
+            List<History> historyList = new List<History>();
+            List<dynamic> historicDataList = new List<dynamic>();
+            
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://www.neowsapp.com/rest/v1/neo/");
+                try
+                {
+                    HttpResponseMessage response = client.GetAsync(id + "?api_key=DEMO_KEY").Result;
+                    response.EnsureSuccessStatusCode();
+
+                    string content = response.Content.ReadAsStringAsync().Result;
+                    dynamic resultat = JsonConvert.DeserializeObject(content);
+
+                    var approachData = resultat.close_approach_data;
+                    foreach (JObject ast in approachData)
+                    {
+                        dynamic temp = JsonConvert.DeserializeObject(ast.ToString());
+                        historicDataList.Add(temp);
+                    }
+                    int size = historicDataList.Count;
+                    for (int i = 0; i < size; i++)
+                    {
+                        History history = new History();
+                        history.Id = resultat.id;
+                        history.Name = resultat.name;
+                        DateTime dateTime = historicDataList[i].close_approach_date_full;
+                        history.Date = dateTime.ToString("dd/MM/yyyy");
+                        history.Time = dateTime.ToString("HH:mm");
+                        history.RelativeVelocity = historicDataList[i].relative_velocity.kilometers_per_second;
+                        Math.Round(history.RelativeVelocity, 2);
+                        history.MissDistance = historicDataList[i].miss_distance.kilometers;
+                        Math.Round(history.MissDistance, 2);
+                        history.OrbitingBody = historicDataList[i].orbiting_body;
+                        historyList.Add(history);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                }
+
+            }
+            return View(historyList);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
