@@ -91,8 +91,9 @@ namespace NASAapp.Controllers
                         asteroid.EstimatedDiameterMax = asteroidsList[i].estimated_diameter.meters.estimated_diameter_max;
                         Math.Round(asteroid.EstimatedDiameterMax, 2);
                         asteroid.Hazardous = asteroidsList[i].is_potentially_hazardous_asteroid;
-                        DateTime time = approachList[i].close_approach_date_full;
-                        asteroid.Time = time.ToString("HH:mm");
+                        DateTime dateTime = approachList[i].close_approach_date_full;
+                        asteroid.Time = dateTime.ToString("HH:mm");
+                        asteroid.Date = dateTime.ToString("dd/MM/yyyy");
                         asteroid.RelativeVelocity = approachList[i].relative_velocity.kilometers_per_second;
                         Math.Round(asteroid.RelativeVelocity, 2);
                         asteroid.MissDistance = approachList[i].miss_distance.kilometers;
