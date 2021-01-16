@@ -31,14 +31,10 @@ namespace NASAapp.Controllers
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
-                    dynamic resultat = JsonConvert.DeserializeObject(content);
+                    apod = JsonConvert.DeserializeObject<Apod>(content);
 
-                    apod.Title = resultat.title;
-                    apod.Explanation = resultat.explanation;
-                    apod.MediaType = resultat.media_type;
-                    apod.Url = resultat.url;
-                    DateTime dateTime = resultat.date;
-                    apod.Date = dateTime.ToString("dd/MM/yyyy");
+                    DateTime dateTime = DateTime.Parse(apod.date);
+                    apod.date = dateTime.ToString("dd/MM/yyyy");
                 }
                 catch (Exception e)
                 {

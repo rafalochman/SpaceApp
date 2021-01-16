@@ -3,19 +3,19 @@
 }
 @model NASAapp.Models.Apod
 
-<h1 class="display-4">@Model.Title</h1> 
-<h5> Image of the Day @Model.Date</h5>
+<h1 class="display-4">@Model.title</h1> 
+<h5> Image of the Day @Model.date</h5>
 <br />
 <div id="mediaContainer">
-    @if (Model.MediaType == "image")
+    @if (Model.media_type == "image")
     {
-        <img id="videoIframe" src="@Model.Url" alt="@Model.Title">
+        <img id="videoIframe" src="@Model.url" alt="@Model.title">
     }
-    @if (Model.MediaType == "video")
+    @if (Model.media_type == "video")
     {
-        <iframe id="videoIframe" src="@Model.Url"></iframe>
+        <iframe id="videoIframe" src="@Model.url"></iframe>
     }
 </div>
 <br />
-<p>@Model.Explanation</p>
+<p>@Model.explanation</p>
 
