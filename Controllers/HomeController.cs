@@ -46,6 +46,7 @@ namespace NASAapp.Controllers
                 catch(Exception e)
                 {
                     _logger.LogError("Error: " + e);
+                    return RedirectToAction("Error");
                 }
                
             }
@@ -105,6 +106,7 @@ namespace NASAapp.Controllers
                 catch (Exception e)
                 {
                     _logger.LogError("Error: " + e);
+                    return RedirectToAction("Error");
                 }
 
             }
@@ -158,6 +160,7 @@ namespace NASAapp.Controllers
                 catch (Exception e)
                 {
                     _logger.LogError("Error: " + e);
+                    return RedirectToAction("Error");
                 }
 
             }
