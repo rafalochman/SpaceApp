@@ -1,5 +1,3 @@
-using System;
-
 namespace NASAapp.Models
 {
     public class ErrorViewModel

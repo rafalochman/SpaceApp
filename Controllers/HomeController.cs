@@ -6,10 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace NASAapp.Controllers
 {
@@ -43,12 +40,12 @@ namespace NASAapp.Controllers
                     DateTime dateTime = resultat.date;
                     apod.Date = dateTime.ToString("dd/MM/yyyy");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     _logger.LogError("Error: " + e);
                     return RedirectToAction("Error");
                 }
-               
+
             }
             return View(apod);
         }
@@ -121,7 +118,7 @@ namespace NASAapp.Controllers
             }
             List<History> historyList = new List<History>();
             List<dynamic> historicDataList = new List<dynamic>();
-            
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://www.neowsapp.com/rest/v1/neo/");
