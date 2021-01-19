@@ -36,9 +36,9 @@ namespace NASAapp.Controllers
                     DateTime dateTime = DateTime.Parse(apod.date);
                     apod.date = dateTime.ToString("dd/MM/yyyy");
                 }
-                catch (Exception e)
+                catch (HttpRequestException e)
                 {
-                    _logger.LogError("Error: " + e);
+                    _logger.LogError(e.Message);
                     return RedirectToAction("Error");
                 }
 
@@ -96,9 +96,9 @@ namespace NASAapp.Controllers
                     }
                     asteroidList.Sort((x, y) => x.Time.CompareTo(y.Time));
                 }
-                catch (Exception e)
+                catch (HttpRequestException e)
                 {
-                    _logger.LogError("Error: " + e);
+                    _logger.LogError(e.Message);
                     return RedirectToAction("Error");
                 }
 
@@ -150,9 +150,9 @@ namespace NASAapp.Controllers
                     }
 
                 }
-                catch (Exception e)
+                catch (HttpRequestException e)
                 {
-                    _logger.LogError("Error: " + e);
+                    _logger.LogError(e.Message);
                     return RedirectToAction("Error");
                 }
 
