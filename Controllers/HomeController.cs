@@ -41,7 +41,6 @@ namespace NASAapp.Controllers
                     _logger.LogError(e.Message);
                     return RedirectToAction("Error");
                 }
-
             }
             return View(apod);
         }
@@ -95,9 +94,8 @@ namespace NASAapp.Controllers
             {
                 return RedirectToAction("Asteroids");
             }
-            List<History> historyList = new List<History>();
-            List<dynamic> historicDataList = new List<dynamic>();
 
+            List<History> historyList = new List<History>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://www.neowsapp.com/rest/v1/neo/");
@@ -107,38 +105,28 @@ namespace NASAapp.Controllers
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
-                    dynamic resultat = JsonConvert.DeserializeObject(content);
+                    NeoLookup neoLookup = JsonConvert.DeserializeObject<NeoLookup>(content);
 
-                    var approachData = resultat.close_approach_data;
-                    foreach (JObject ast in approachData)
+                    foreach(Lookup_Close_Approach_Data data in neoLookup.close_approach_data)
                     {
-                        dynamic temp = JsonConvert.DeserializeObject(ast.ToString());
-                        historicDataList.Add(temp);
-                    }
-                    int size = historicDataList.Count;
-                    for (int i = 0; i < size; i++)
-                    {
-                        History history = new History();
-                        history.Id = resultat.id;
-                        history.Name = resultat.name;
-                        DateTime dateTime = historicDataList[i].close_approach_date_full;
-                        history.Date = dateTime.ToString("dd/MM/yyyy");
-                        history.Time = dateTime.ToString("HH:mm");
-                        history.RelativeVelocity = historicDataList[i].relative_velocity.kilometers_per_second;
-                        Math.Round(history.RelativeVelocity, 2);
-                        history.MissDistance = historicDataList[i].miss_distance.kilometers;
-                        Math.Round(history.MissDistance, 2);
-                        history.OrbitingBody = historicDataList[i].orbiting_body;
+                        History history = new History
+                        {
+                            Id = neoLookup.id,
+                            Name = neoLookup.name,
+                            Date = data.close_approach_date_full.ToString("dd/MM/yyyy"),
+                            Time = data.close_approach_date_full.ToString("HH:mm"),
+                            RelativeVelocity = Math.Round(data.relative_velocity.kilometers_per_second, 2),
+                            MissDistance = Math.Round(data.miss_distance.kilometers, 2),
+                            OrbitingBody = data.orbiting_body
+                        };
                         historyList.Add(history);
                     }
-
                 }
                 catch (HttpRequestException e)
                 {
                     _logger.LogError(e.Message);
                     return RedirectToAction("Error");
                 }
-
             }
             return View(historyList);
         }
