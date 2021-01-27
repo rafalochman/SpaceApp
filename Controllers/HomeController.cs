@@ -59,39 +59,23 @@ namespace NASAapp.Controllers
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
-                    content = content.Replace(currentDate, "date");
+                    content = content.Replace(currentDate, "asteroids");
+                    NeoWs neoWs = JsonConvert.DeserializeObject<NeoWs>(content);
 
-                    dynamic resultat = JsonConvert.DeserializeObject(content);
-                    var asteroids = resultat.near_earth_objects.date;
-                    List<dynamic> asteroidsList = new List<dynamic>();
-                    List<dynamic> approachList = new List<dynamic>();
-                    foreach (JObject ast in asteroids)
+                    foreach (Asteroids ast in neoWs.near_earth_objects.asteroids)
                     {
-                        dynamic temp = JsonConvert.DeserializeObject(ast.ToString());
-                        asteroidsList.Add(temp);
-                        foreach (JObject dat in temp.close_approach_data)
+                        Asteroid asteroid = new Asteroid
                         {
-                            approachList.Add(JsonConvert.DeserializeObject(dat.ToString()));
-                        }
-                    }
-                    int size = resultat.element_count;
-                    for (int i = 0; i < size; i++)
-                    {
-                        Asteroid asteroid = new Asteroid();
-                        asteroid.Id = asteroidsList[i].id;
-                        asteroid.Name = asteroidsList[i].name;
-                        asteroid.EstimatedDiameterMin = asteroidsList[i].estimated_diameter.meters.estimated_diameter_min;
-                        Math.Round(asteroid.EstimatedDiameterMin, 2);
-                        asteroid.EstimatedDiameterMax = asteroidsList[i].estimated_diameter.meters.estimated_diameter_max;
-                        Math.Round(asteroid.EstimatedDiameterMax, 2);
-                        asteroid.Hazardous = asteroidsList[i].is_potentially_hazardous_asteroid;
-                        DateTime dateTime = approachList[i].close_approach_date_full;
-                        asteroid.Time = dateTime.ToString("HH:mm");
-                        asteroid.Date = dateTime.ToString("dd/MM/yyyy");
-                        asteroid.RelativeVelocity = approachList[i].relative_velocity.kilometers_per_second;
-                        Math.Round(asteroid.RelativeVelocity, 2);
-                        asteroid.MissDistance = approachList[i].miss_distance.kilometers;
-                        Math.Round(asteroid.MissDistance, 2);
+                            Id = ast.id,
+                            Name = ast.name,
+                            EstimatedDiameterMin = Math.Round(ast.estimated_diameter.meters.estimated_diameter_min, 2),
+                            EstimatedDiameterMax = Math.Round(ast.estimated_diameter.meters.estimated_diameter_max, 2),
+                            Hazardous = ast.is_potentially_hazardous_asteroid,
+                            Time = ast.close_approach_data[0].close_approach_date_full.ToString("HH:mm"),
+                            Date = ast.close_approach_data[0].close_approach_date_full.ToString("dd/MM/yyyy"),
+                            RelativeVelocity = Math.Round(ast.close_approach_data[0].relative_velocity.kilometers_per_second, 2),
+                            MissDistance = Math.Round(ast.close_approach_data[0].miss_distance.kilometers, 2)
+                        };
                         asteroidList.Add(asteroid);
                     }
                     asteroidList.Sort((x, y) => x.Time.CompareTo(y.Time));
@@ -101,7 +85,6 @@ namespace NASAapp.Controllers
                     _logger.LogError(e.Message);
                     return RedirectToAction("Error");
                 }
-
             }
             return View(asteroidList);
         }
