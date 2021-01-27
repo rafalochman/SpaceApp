@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NASAapp.Models
 {
@@ -14,10 +11,10 @@ namespace NASAapp.Models
         public string designation { get; set; }
         public string nasa_jpl_url { get; set; }
         public float absolute_magnitude_h { get; set; }
-        public Lookup_Estimated_Diameter estimated_diameter { get; set; }
+        public EstimatedDiameter estimated_diameter { get; set; }
         public bool is_potentially_hazardous_asteroid { get; set; }
-        public Lookup_Close_Approach_Data[] close_approach_data { get; set; }
-        public Orbital_Data orbital_data { get; set; }
+        public CloseApproachData[] close_approach_data { get; set; }
+        public OrbitalData orbital_data { get; set; }
         public bool is_sentry_object { get; set; }
     }
 
@@ -26,44 +23,12 @@ namespace NASAapp.Models
         public string self { get; set; }
     }
 
-    public class Lookup_Estimated_Diameter
+    public class OrbitalData
     {
-        public Lookup_Kilometers kilometers { get; set; }
-        public Lookup_Meters meters { get; set; }
-        public Lookup_Miles miles { get; set; }
-        public Lookup_Feet feet { get; set; }
-    }
-
-    public class Lookup_Kilometers
-    {
-        public float estimated_diameter_min { get; set; }
-        public float estimated_diameter_max { get; set; }
-    }
-
-    public class Lookup_Meters
-    {
-        public float estimated_diameter_min { get; set; }
-        public float estimated_diameter_max { get; set; }
-    }
-
-    public class Lookup_Miles
-    {
-        public float estimated_diameter_min { get; set; }
-        public float estimated_diameter_max { get; set; }
-    }
-
-    public class Lookup_Feet
-    {
-        public float estimated_diameter_min { get; set; }
-        public float estimated_diameter_max { get; set; }
-    }
-
-    public class Orbital_Data
-    {
-        public string orbit_id { get; set; }
-        public string orbit_determination_date { get; set; }
-        public string first_observation_date { get; set; }
-        public string last_observation_date { get; set; }
+        public int orbit_id { get; set; }
+        public DateTime orbit_determination_date { get; set; }
+        public DateTime first_observation_date { get; set; }
+        public DateTime last_observation_date { get; set; }
         public int data_arc_in_days { get; set; }
         public int observations_used { get; set; }
         public string orbit_uncertainty { get; set; }
@@ -82,39 +47,14 @@ namespace NASAapp.Models
         public string mean_anomaly { get; set; }
         public string mean_motion { get; set; }
         public string equinox { get; set; }
-        public Orbit_Class orbit_class { get; set; }
+        public OrbitClass orbit_class { get; set; }
     }
 
-    public class Orbit_Class
+    public class OrbitClass
     {
         public string orbit_class_type { get; set; }
         public string orbit_class_description { get; set; }
         public string orbit_class_range { get; set; }
-    }
-
-    public class Lookup_Close_Approach_Data
-    {
-        public string close_approach_date { get; set; }
-        public DateTime close_approach_date_full { get; set; }
-        public long epoch_date_close_approach { get; set; }
-        public Lookup_Relative_Velocity relative_velocity { get; set; }
-        public Lookup_Miss_Distance miss_distance { get; set; }
-        public string orbiting_body { get; set; }
-    }
-
-    public class Lookup_Relative_Velocity
-    {
-        public decimal kilometers_per_second { get; set; }
-        public decimal kilometers_per_hour { get; set; }
-        public decimal miles_per_hour { get; set; }
-    }
-
-    public class Lookup_Miss_Distance
-    {
-        public decimal astronomical { get; set; }
-        public decimal lunar { get; set; }
-        public decimal kilometers { get; set; }
-        public decimal miles { get; set; }
     }
 
 }

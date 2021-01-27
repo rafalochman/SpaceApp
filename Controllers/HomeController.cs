@@ -107,7 +107,7 @@ namespace NASAapp.Controllers
                     string content = response.Content.ReadAsStringAsync().Result;
                     NeoLookup neoLookup = JsonConvert.DeserializeObject<NeoLookup>(content);
 
-                    foreach(Lookup_Close_Approach_Data data in neoLookup.close_approach_data)
+                    foreach(CloseApproachData data in neoLookup.close_approach_data)
                     {
                         History history = new History
                         {

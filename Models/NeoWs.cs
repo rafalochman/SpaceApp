@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NASAapp.Models
 {
@@ -10,7 +7,7 @@ namespace NASAapp.Models
     {
         public Links links { get; set; }
         public int element_count { get; set; }
-        public Near_Earth_Objects near_earth_objects { get; set; }
+        public NearEarthObjects near_earth_objects { get; set; }
     }
 
     public class Links
@@ -20,31 +17,31 @@ namespace NASAapp.Models
         public string self { get; set; }
     }
 
-    public class Near_Earth_Objects
+    public class NearEarthObjects
     {
         public Asteroids[] asteroids { get; set; }
     }
 
     public class Asteroids
     {
-        public Links1 links { get; set; }
+        public AsteroidsLinks links { get; set; }
         public int id { get; set; }
         public string neo_reference_id { get; set; }
         public string name { get; set; }
         public string nasa_jpl_url { get; set; }
         public float absolute_magnitude_h { get; set; }
-        public Estimated_Diameter estimated_diameter { get; set; }
+        public EstimatedDiameter estimated_diameter { get; set; }
         public string is_potentially_hazardous_asteroid { get; set; }
-        public Close_Approach_Data[] close_approach_data { get; set; }
+        public CloseApproachData[] close_approach_data { get; set; }
         public bool is_sentry_object { get; set; }
     }
 
-    public class Links1
+    public class AsteroidsLinks
     {
         public string self { get; set; }
     }
 
-    public class Estimated_Diameter
+    public class EstimatedDiameter
     {
         public Kilometers kilometers { get; set; }
         public Meters meters { get; set; }
@@ -76,24 +73,24 @@ namespace NASAapp.Models
         public decimal estimated_diameter_max { get; set; }
     }
 
-    public class Close_Approach_Data
+    public class CloseApproachData
     {
         public string close_approach_date { get; set; }
         public DateTime close_approach_date_full { get; set; }
         public long epoch_date_close_approach { get; set; }
-        public Relative_Velocity relative_velocity { get; set; }
-        public Miss_Distance miss_distance { get; set; }
+        public RelativeVelocity relative_velocity { get; set; }
+        public MissDistance miss_distance { get; set; }
         public string orbiting_body { get; set; }
     }
 
-    public class Relative_Velocity
+    public class RelativeVelocity
     {
         public decimal kilometers_per_second { get; set; }
         public decimal kilometers_per_hour { get; set; }
         public decimal miles_per_hour { get; set; }
     }
 
-    public class Miss_Distance
+    public class MissDistance
     {
         public decimal astronomical { get; set; }
         public decimal lunar { get; set; }
