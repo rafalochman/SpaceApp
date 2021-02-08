@@ -1,5 +1,7 @@
 # NASAapp
-NASAapp is a web aplication which uses NASA WebApi to show daily photos with description and show asteroids which miss Earth with their history. 
+NASAapp is a web aplication which uses NASA WebApi to display photos with description and show asteroids which miss Earth today. Each asteroid has its own observation history.
+
+Application is hosted on Azure: https://nasaapp.azurewebsites.net
 
 ## Technologies
 * C#
@@ -7,7 +9,6 @@ NASAapp is a web aplication which uses NASA WebApi to show daily photos with des
 * .NET Framework 5.0
 * HTML, CSS, JavaScript
 * Bootstrap
-* WebApi
 
 ## Home view
 ![application view image](readmeImages/appView.png)
