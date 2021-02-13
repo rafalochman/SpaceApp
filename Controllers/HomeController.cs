@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using NASAapp.Configs;
 
 namespace NASAapp.Controllers
 {
@@ -27,7 +28,7 @@ namespace NASAapp.Controllers
                 client.BaseAddress = new Uri("https://api.nasa.gov/planetary/");
                 try
                 {
-                    HttpResponseMessage response = client.GetAsync("apod?api_key=DEMO_KEY").Result;
+                    HttpResponseMessage response = client.GetAsync("apod?api_key=" + Config.NASA_KEY).Result;
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
@@ -54,7 +55,7 @@ namespace NASAapp.Controllers
                 client.BaseAddress = new Uri("https://api.nasa.gov/neo/rest/v1/feed");
                 try
                 {
-                    HttpResponseMessage response = client.GetAsync("?start_date=" + currentDate + "&end_date=" + currentDate + "&api_key=DEMO_KEY").Result;
+                    HttpResponseMessage response = client.GetAsync("?start_date=" + currentDate + "&end_date=" + currentDate + "&api_key=" + Config.NASA_KEY).Result;
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
@@ -101,7 +102,7 @@ namespace NASAapp.Controllers
                 client.BaseAddress = new Uri("http://www.neowsapp.com/rest/v1/neo/");
                 try
                 {
-                    HttpResponseMessage response = client.GetAsync(id + "?api_key=DEMO_KEY").Result;
+                    HttpResponseMessage response = client.GetAsync(id + "?api_key=" + Config.NASA_KEY).Result;
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;

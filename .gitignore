@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 /Logs
 /Properties/ServiceDependencies/NASAapp - Web Deploy
+/Configs
