@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Mars Weather";
+}
+@model NASAapp.Models.MarsWeather
+
+<h1 class="display-4">Mars Weather</h1>
+<h5>Weather data transmitted by the Curiosity Rover from Mars - sol @Model.sol</h5>
+
+<p>
+    Earth date: @Model.terrestrial_date
+</p>
+<p>
+    Min temperature: @Model.min_temp &deg;C
+</p>
+<p>
+    Max temperature: @Model.max_temp &deg;C
+</p>
+<p>
+    Pressure: @Model.pressure Pa
+</p>
+<p>
+    Uv irradiance index: @Model.local_uv_irradiance_index
+</p>
+<p>
+    Sun rise: @Model.sunrise
+</p>
+<p>
+    Sun set: @Model.sunset
+</p>
+
+

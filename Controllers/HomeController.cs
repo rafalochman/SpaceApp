@@ -131,6 +131,32 @@ namespace NASAapp.Controllers
             return View(historyList);
         }
 
+        public IActionResult MarsWeather()
+        {
+            MarsWeather marsWeather = new MarsWeather();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://api.maas2.apollorion.com/");
+                try
+                {
+                    HttpResponseMessage response = client.GetAsync("").Result;
+                    response.EnsureSuccessStatusCode();
+
+                    string content = response.Content.ReadAsStringAsync().Result;
+                    marsWeather = JsonConvert.DeserializeObject<MarsWeather>(content);
+
+                    DateTime dateTime = DateTime.Parse(marsWeather.terrestrial_date);
+                    marsWeather.terrestrial_date = dateTime.ToString("dd/MM/yyyy");
+                }
+                catch (HttpRequestException e)
+                {
+                    _logger.LogError(e.Message);
+                    return RedirectToAction("Error");
+                }
+            }
+            return View(marsWeather);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
