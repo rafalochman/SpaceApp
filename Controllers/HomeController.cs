@@ -132,12 +132,13 @@ namespace NASAapp.Controllers
             return View(historyList);
         }
 
-        public IActionResult MarsWeather()
+        [HttpGet]
+        public IActionResult MarsWeather(int? sol)
         {
             MarsWeather marsWeather = new MarsWeather();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://api.maas2.apollorion.com/");
+                client.BaseAddress = new Uri("https://api.maas2.apollorion.com/" + sol);
                 try
                 {
                     HttpResponseMessage response = client.GetAsync("").Result;
@@ -152,11 +153,17 @@ namespace NASAapp.Controllers
                 catch (HttpRequestException e)
                 {
                     _logger.LogError(e.Message);
-                    return RedirectToAction("Error");
+                    return RedirectToAction("MarsWeather");
+                }
+                catch (JsonSerializationException e)
+                {
+                    _logger.LogError(e.Message);
+                    return RedirectToAction("MarsWeather");
                 }
             }
             return View(marsWeather);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -28,4 +28,10 @@
     Sun set: @Model.sunset
 </p>
 
+<form class="form-group" method="get" action="/Home/MarsWeather">
+    <label class="col-form-label">Type sol to show weather this day</label>
+    <input class="form-control" type="number" name="sol" min="1" max="2667">
+    <small class="form-text text-muted">Sol must be between 1 and 2667.</small>
+    <input class="btn btn-primary" type="submit" value="Show">
+</form>
 
