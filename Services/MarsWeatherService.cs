@@ -65,6 +65,7 @@ namespace NASAapp.Services
                     solesWeatherList.Add(GetNaSole(sol));
                 }
             }
+
             for(int i = 1; i < 7; i++)
             {
                 solesWeatherList.Add(marsWeather.soles[i]);
@@ -72,8 +73,15 @@ namespace NASAapp.Services
 
             foreach(Sole sole in solesWeatherList)
             {
-                DateTime dateTime = DateTime.Parse(sole.terrestrial_date);
-                sole.terrestrial_date = dateTime.ToString("dd/MM/yyyy");
+                try
+                {
+                    DateTime dateTime = DateTime.Parse(sole.terrestrial_date);
+                    sole.terrestrial_date = dateTime.ToString("dd/MM/yyyy");
+                }
+                catch(FormatException e)
+                {
+                    _logger.LogError(e.Message);
+                } 
             }
             return solesWeatherList;
         }
@@ -91,7 +99,6 @@ namespace NASAapp.Services
                 sunrise = "N/A",
                 sunset = "N/A"
             };
-
             return sole;
         }
     }
