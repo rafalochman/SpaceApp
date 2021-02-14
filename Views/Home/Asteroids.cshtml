@@ -58,7 +58,7 @@
                     @Html.DisplayFor(modelItem => item.Time)
                 </td>
                 <td>
-                    @Html.ActionLink("History", "History", new { id = item.Id })
+                    @Html.ActionLink("History", "History", new { id = item.Id }, new { @class="btn-sm btn-secondary"})
                 </td>
             </tr>
         }

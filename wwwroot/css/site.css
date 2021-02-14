@@ -101,6 +101,10 @@ body {
     width: 100%;
 }
 
+#mainWeather > h3{
+    font-weight: bold;
+}
+
 #mainWeather > p {
     font-size: 120%;
 }
