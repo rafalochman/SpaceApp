@@ -63,33 +63,17 @@ namespace NASAapp.Controllers
         [HttpGet]
         public IActionResult MarsWeather(int? sol)
         {
-            MarsWeather marsWeather = new MarsWeather();
-            using (var client = new HttpClient())
+            var marsWeatherService = new MarsWeatherService(_logger);
+            MarsWeather marsWeather = marsWeatherService.GetMarsWeather();
+            if (!marsWeather.soles.Any())
             {
-                client.BaseAddress = new Uri("https://api.maas2.apollorion.com/" + sol);
-                try
-                {
-                    HttpResponseMessage response = client.GetAsync("").Result;
-                    response.EnsureSuccessStatusCode();
-
-                    string content = response.Content.ReadAsStringAsync().Result;
-                    marsWeather = JsonConvert.DeserializeObject<MarsWeather>(content);
-
-                    DateTime dateTime = DateTime.Parse(marsWeather.terrestrial_date);
-                    marsWeather.terrestrial_date = dateTime.ToString("dd/MM/yyyy");
-                }
-                catch (HttpRequestException e)
-                {
-                    _logger.LogError(e.Message);
-                    return RedirectToAction("MarsWeather");
-                }
-                catch (JsonSerializationException e)
-                {
-                    _logger.LogError(e.Message);
-                    return RedirectToAction("MarsWeather");
-                }
+                return RedirectToAction("Error");
             }
-            return View(marsWeather);
+            if (sol == null)
+            {
+                return View(marsWeather.soles[0]);
+            }
+            return View(Array.Find(marsWeather.soles, x => x.sol == sol.ToString()));
         }
 
 
