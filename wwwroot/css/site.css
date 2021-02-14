@@ -166,3 +166,11 @@ body {
         padding-left: 120px;
     }
 }
+
+#weatherTable {
+    margin-top: 40px;
+}
+
+td {
+    min-width: 58px;
+}
