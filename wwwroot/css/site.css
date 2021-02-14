@@ -185,6 +185,10 @@ body {
     }
 }
 
+#jpl {
+    float: right;
+}
+
 #weatherTable {
     margin-top: 48px;
 }

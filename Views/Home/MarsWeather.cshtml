@@ -31,9 +31,9 @@
                 <p>High: @Html.DisplayFor(modelItem => item.min_temp) &deg;C<br />Low: @Html.DisplayFor(modelItem => item.max_temp) &deg;C</p>
             </div>
         }
-
     </div>
 </div>
+<small class="text-muted" id="jpl">Courtesy NASA/JPL-Caltech.</small>
 
 <form id="solForm" class="form-group" method="get" action="/Home/MarsWeather">
     <label class="col-form-label">Type sol to show weather this day</label>
