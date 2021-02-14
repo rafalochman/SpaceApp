@@ -1,37 +1,44 @@
 ﻿@{
     ViewData["Title"] = "Mars Weather";
 }
-@model NASAapp.Models.Sole
+@model IEnumerable<NASAapp.Models.Sole>
 
 <h1 class="display-4">Mars Weather</h1>
-<h5>Weather data transmitted by the Curiosity Rover from Mars - sol @Model.sol</h5>
+<h5>Weather data transmitted by the Curiosity Rover from Mars</h5>
 
-<p>
-    Earth date: @Model.terrestrial_date
-</p>
-<p>
-    Min temperature: @Model.min_temp &deg;C
-</p>
-<p>
-    Max temperature: @Model.max_temp &deg;C
-</p>
-<p>
-    Pressure: @Model.pressure Pa
-</p>
-<p>
-    Uv irradiance index: @Model.local_uv_irradiance_index
-</p>
-<p>
-    Sun rise: @Model.sunrise
-</p>
-<p>
-    Sun set: @Model.sunset
-</p>
+@foreach (var item in Model)
+{
+    <p>
+        Sol: @Html.DisplayFor(modelItem => item.sol)
+    </p>
+    <p>
+        Earth date: @Html.DisplayFor(modelItem => item.terrestrial_date)
+    </p>
+    <p>
+        Min temperature: @Html.DisplayFor(modelItem => item.min_temp) &deg;C
+    </p>
+    <p>
+        Max temperature: @Html.DisplayFor(modelItem => item.max_temp) &deg;C
+    </p>
+    <p>
+        Pressure: @Html.DisplayFor(modelItem => item.pressure) Pa
+    </p>
+    <p>
+        Uv irradiance index: @Html.DisplayFor(modelItem => item.local_uv_irradiance_index)
+    </p>
+    <p>
+        Sun rise: @Html.DisplayFor(modelItem => item.sunrise)
+    </p>
+    <p>
+        Sun set: @Html.DisplayFor(modelItem => item.sunset)
+    </p>
+}
+
 
 <form class="form-group" method="get" action="/Home/MarsWeather">
     <label class="col-form-label">Type sol to show weather this day</label>
-    <input class="form-control" type="number" name="sol" min="1" max="@Model.sol">
-    <small class="form-text text-muted">Sol must be between 1 and @Model.sol.</small>
+    <input class="form-control" type="number" name="sol" min="1" max="@ViewBag.latestSol">
+    <small class="form-text text-muted">Sol must be between 1 and @ViewBag.latestSol.</small>
     <input class="btn btn-primary" type="submit" value="Show">
 </form>
 

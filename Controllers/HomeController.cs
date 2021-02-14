@@ -64,16 +64,13 @@ namespace NASAapp.Controllers
         public IActionResult MarsWeather(int? sol)
         {
             var marsWeatherService = new MarsWeatherService(_logger);
-            MarsWeather marsWeather = marsWeatherService.GetMarsWeather();
-            if (!marsWeather.soles.Any())
+            List<Sole> solesWeatherList = marsWeatherService.GetSolesWeather(sol);
+            if (!solesWeatherList.Any())
             {
                 return RedirectToAction("Error");
             }
-            if (sol == null)
-            {
-                return View(marsWeather.soles[0]);
-            }
-            return View(Array.Find(marsWeather.soles, x => x.sol == sol.ToString()));
+            ViewBag.latestSol = marsWeatherService.LatestSol;
+            return View(solesWeatherList);
         }
 
 

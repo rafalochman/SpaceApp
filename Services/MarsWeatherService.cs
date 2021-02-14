@@ -12,14 +12,15 @@ namespace NASAapp.Services
     public class MarsWeatherService
     {
         private readonly ILogger _logger;
+        public string LatestSol;
 
         public MarsWeatherService(ILogger logger)
         {
             _logger = logger;
         }
-        public MarsWeather GetMarsWeather()
+        public List<Sole> GetSolesWeather(int? sol)
         {
-            MarsWeather marsWeather = new MarsWeather();
+            List<Sole> solesWeatherList = new List<Sole>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://mars.nasa.gov/rss/api/?feed=weather&category=msl&feedtype=json");
@@ -29,7 +30,10 @@ namespace NASAapp.Services
                     response.EnsureSuccessStatusCode();
 
                     string content = response.Content.ReadAsStringAsync().Result;
-                    marsWeather = JsonConvert.DeserializeObject<MarsWeather>(content);
+                    var marsWeather = JsonConvert.DeserializeObject<MarsWeather>(content);
+
+                    LatestSol = marsWeather.soles[0].sol;
+                    solesWeatherList = GetSolesWeatherList(marsWeather, sol);
                 }
                 catch (HttpRequestException e)
                 {
@@ -40,7 +44,49 @@ namespace NASAapp.Services
                     _logger.LogError(e.Message);
                 }
             }
-            return marsWeather;
+            return solesWeatherList;
+        }
+
+        private List<Sole> GetSolesWeatherList(MarsWeather marsWeather, int? sol)
+        {
+            List<Sole> solesWeatherList = new List<Sole>();
+            if(sol == null)
+            {
+                solesWeatherList.Add(marsWeather.soles[0]);
+            }
+            else
+            {
+                if(Array.Exists(marsWeather.soles, x => x.sol == sol.ToString()))
+                {
+                    solesWeatherList.Add(Array.Find(marsWeather.soles, x => x.sol == sol.ToString()));
+                }
+                else
+                {
+                    solesWeatherList.Add(GetNaSole(sol));
+                }
+            }
+            for(int i = 1; i < 6; i++)
+            {
+                solesWeatherList.Add(marsWeather.soles[i]);
+            }
+            return solesWeatherList;
+        }
+
+        private Sole GetNaSole(int? sol)
+        {
+            Sole sole = new Sole
+            {
+                sol = sol.ToString(),
+                terrestrial_date = "N/A",
+                min_temp = "N/A",
+                max_temp = "N/A",
+                pressure = "N/A",
+                local_uv_irradiance_index = "N/A",
+                sunrise = "N/A",
+                sunset = "N/A"
+            };
+
+            return sole;
         }
     }
 }
