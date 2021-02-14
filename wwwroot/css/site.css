@@ -83,7 +83,7 @@ body {
     height: 100%;
 }
 
-#scrollDiv {
+.scrollDiv {
     overflow-x: auto;
 }
 
@@ -95,7 +95,7 @@ body {
 }
 
 #mainWeather {
-    padding-left: 60px;
+    padding-left: 20px;
     padding-right: 40px;
     padding-top: 140px;
     width: 100%;
@@ -121,7 +121,7 @@ body {
 }
 
 #mainSolWeather {
-    padding-left: 60px;
+    padding-left: 20px;
     font-size: 136%;
     display: inline-block;
 }
@@ -131,8 +131,8 @@ body {
 }
 
 #fiveDaysContainer {
-    padding-left: 60px;
-    padding-right: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 140px;
 }
 
@@ -160,6 +160,17 @@ body {
 #solForm {
     margin-top: 40px;
     width: 50%;
+}
+
+@media (min-width: 500px) {
+    #mainWeather {
+        padding-left: 60px;
+    }
+
+    #fiveDaysContainer {
+        padding-left: 60px;
+        padding-right: 40px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -190,7 +201,7 @@ body {
 }
 
 #weatherTable {
-    margin-top: 48px;
+    margin-top: 40px;
 }
 
 td {

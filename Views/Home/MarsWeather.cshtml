@@ -42,56 +42,57 @@
     <input class="btn btn-secondary" type="submit" value="Show">
 </form>
 
-<table class="table table-hover" id="weatherTable">
-    <tr>
-        <th>
-            Sol
-        </th>
-        <th>
-            Date
-        </th>
-        <th>
-            High
-        </th>
-        <th>
-            Low
-        </th>
-        <th>
-            Pressure
-        </th>
-        <th>
-            Sun rise
-        </th>
-        <th>
-            Sun set
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="scrollDiv">
+    <table class="table table-hover" id="weatherTable">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.sol)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.terrestrial_date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.max_temp) &deg;C
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.min_temp) &deg;C
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.pressure) Pa
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sunrise) 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sunset)
-            </td>
+            <th>
+                Sol
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                High
+            </th>
+            <th>
+                Low
+            </th>
+            <th>
+                Pressure
+            </th>
+            <th>
+                Sun rise
+            </th>
+            <th>
+                Sun set
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.terrestrial_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.max_temp) &deg;C
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.min_temp) &deg;C
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pressure) Pa
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sunrise)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sunset)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
