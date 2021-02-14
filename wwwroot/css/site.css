@@ -91,6 +91,7 @@ body {
     margin-top: 20px;
     background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("../images/mars.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #mainWeather {
@@ -153,9 +154,13 @@ body {
 }
 
 @media (min-width: 992px) {
+    #weatherContainer {
+        background-size: auto;
+    }
+
     #mainWeather {
         padding-right: 60px;
-        width: 60%;
+        width: 56%;
     }
 
     #mainSolDate {
