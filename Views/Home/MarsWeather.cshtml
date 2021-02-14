@@ -6,33 +6,38 @@
 <h1 class="display-4">Mars Weather</h1>
 <h5>Weather data transmitted by the Curiosity Rover from Mars</h5>
 
-@foreach (var item in Model)
-{
-    <p>
-        Sol: @Html.DisplayFor(modelItem => item.sol)
-    </p>
-    <p>
-        Earth date: @Html.DisplayFor(modelItem => item.terrestrial_date)
-    </p>
-    <p>
-        Min temperature: @Html.DisplayFor(modelItem => item.min_temp) &deg;C
-    </p>
-    <p>
-        Max temperature: @Html.DisplayFor(modelItem => item.max_temp) &deg;C
-    </p>
-    <p>
-        Pressure: @Html.DisplayFor(modelItem => item.pressure) Pa
-    </p>
-    <p>
-        Uv irradiance index: @Html.DisplayFor(modelItem => item.local_uv_irradiance_index)
-    </p>
-    <p>
-        Sun rise: @Html.DisplayFor(modelItem => item.sunrise)
-    </p>
-    <p>
-        Sun set: @Html.DisplayFor(modelItem => item.sunset)
-    </p>
-}
+<div id="weatherContainer">
+    <div id="mainWeather">
+        <h3>
+            <b>
+                Latest Weather<br />
+                at Gale Crater
+            </b>
+        </h3>
+        <p>Curiosity is taking daily weather measurements at Gale Crater in the southern hemisphere of Mars, near the equator.</p>
+
+        <div id="mainSolDate">
+            <p><span>Sol @Model.First().sol</span><br />@Model.First().terrestrial_date</p>
+        </div>
+        <div id="mainSolWeather">
+            <p><span>High: @Model.First().max_temp &deg;C</span><br />Low: @Model.First().min_temp &deg;C</p>
+        </div>
+    </div>
+
+    <div id="fiveDaysContainer">
+        @foreach (var item in Model.Skip(1))
+        {
+            <div class="dayContainer">
+                <p><span>Sol @Html.DisplayFor(modelItem => item.sol)</span><br />@Html.DisplayFor(modelItem => item.terrestrial_date)</p>
+                <hr>
+                <p>High: @Html.DisplayFor(modelItem => item.min_temp) &deg;C<br />Low: @Html.DisplayFor(modelItem => item.max_temp) &deg;C</p>
+            </div>
+        }
+
+    </div>
+
+</div>
+
 
 
 <form class="form-group" method="get" action="/Home/MarsWeather">

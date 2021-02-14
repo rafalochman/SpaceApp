@@ -86,3 +86,83 @@ body {
 #scrollDiv {
     overflow-x: auto;
 }
+
+#weatherContainer {
+    margin-top: 20px;
+    background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url("../images/mars.jpg");
+    background-repeat: no-repeat;
+}
+
+#mainWeather {
+    padding-left: 60px;
+    padding-right: 40px;
+    padding-top: 140px;
+    width: 100%;
+}
+
+#mainWeather > p {
+    font-size: 120%;
+}
+
+#mainSolDate {
+    padding-left: 20px;
+    font-size: 136%;
+    display: inline-block;
+}
+
+#mainSolDate > p > span {
+    font-weight: bolder;
+    font-size: 140%;
+}
+
+#mainSolWeather {
+    padding-left: 60px;
+    font-size: 136%;
+    display: inline-block;
+}
+
+#mainSolWeather > p > span {
+    line-height: 190%;
+}
+
+#fiveDaysContainer {
+    padding-left: 60px;
+    padding-right: 40px;
+    padding-bottom: 140px;
+}
+
+.dayContainer {
+    width: 140px;
+    background: rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    text-align: center;
+    padding-top: 20px;
+    margin-right: 16px;
+    margin-top: 16px;
+}
+
+.dayContainer > p > span {
+    font-weight: bold;
+    font-size: 130%;
+}
+
+.dayContainer > hr {
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+@media (min-width: 992px) {
+    #mainWeather {
+        padding-right: 60px;
+        width: 60%;
+    }
+
+    #mainSolDate {
+        padding-left: 40px;
+    }
+
+    #mainSolWeather {
+        padding-left: 120px;
+    }
+}

@@ -65,9 +65,15 @@ namespace NASAapp.Services
                     solesWeatherList.Add(GetNaSole(sol));
                 }
             }
-            for(int i = 1; i < 6; i++)
+            for(int i = 1; i < 7; i++)
             {
                 solesWeatherList.Add(marsWeather.soles[i]);
+            }
+
+            foreach(Sole sole in solesWeatherList)
+            {
+                DateTime dateTime = DateTime.Parse(sole.terrestrial_date);
+                sole.terrestrial_date = dateTime.ToString("dd/MM/yyyy");
             }
             return solesWeatherList;
         }
