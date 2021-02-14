@@ -37,11 +37,11 @@
     </div>
 </div>
 
-<form class="form-group" method="get" action="/Home/MarsWeather">
+<form id="solForm" class="form-group" method="get" action="/Home/MarsWeather">
     <label class="col-form-label">Type sol to show weather this day</label>
     <input class="form-control" type="number" name="sol" min="1" max="@ViewBag.latestSol">
     <small class="form-text text-muted">Sol must be between 1 and @ViewBag.latestSol.</small>
-    <input class="btn btn-primary" type="submit" value="Show">
+    <input class="btn btn-secondary" type="submit" value="Show">
 </form>
 
 <table class="table table-hover" id="weatherTable">
