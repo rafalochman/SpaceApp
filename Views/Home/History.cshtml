@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time) 
+                @Html.DisplayFor(modelItem => item.Time)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RelativeVelocity) km/s
@@ -41,9 +41,11 @@
                 @Html.DisplayFor(modelItem => item.MissDistance) km
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrbitingBody) 
-            </td>     
+                @Html.DisplayFor(modelItem => item.OrbitingBody)
+            </td>
         </tr>
     }
 
 </table>
+
+<a class="btn btn-secondary" href='javascript:history.go(-1)'>Back</a>
