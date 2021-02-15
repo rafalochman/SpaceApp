@@ -3,9 +3,7 @@ using NASAapp.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace NASAapp.Services
 {
@@ -50,13 +48,13 @@ namespace NASAapp.Services
         private List<Sole> GetSolesWeatherList(MarsWeather marsWeather, int? sol)
         {
             List<Sole> solesWeatherList = new List<Sole>();
-            if(sol == null)
+            if (sol == null)
             {
                 solesWeatherList.Add(marsWeather.Soles[0]);
             }
             else
             {
-                if(Array.Exists(marsWeather.Soles, x => x.Sol == sol.ToString()))
+                if (Array.Exists(marsWeather.Soles, x => x.Sol == sol.ToString()))
                 {
                     solesWeatherList.Add(Array.Find(marsWeather.Soles, x => x.Sol == sol.ToString()));
                 }
@@ -66,22 +64,22 @@ namespace NASAapp.Services
                 }
             }
 
-            for(int i = 1; i < 7; i++)
+            for (int i = 1; i < 7; i++)
             {
                 solesWeatherList.Add(marsWeather.Soles[i]);
             }
 
-            foreach(Sole sole in solesWeatherList)
+            foreach (Sole sole in solesWeatherList)
             {
                 try
                 {
                     DateTime dateTime = DateTime.Parse(sole.Date);
                     sole.Date = dateTime.ToString("dd/MM/yyyy");
                 }
-                catch(FormatException e)
+                catch (FormatException e)
                 {
                     _logger.LogError(e.Message);
-                } 
+                }
             }
             return solesWeatherList;
         }

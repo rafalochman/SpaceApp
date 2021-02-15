@@ -3,13 +3,11 @@ using System;
 
 namespace NASAapp.Models
 {
-
     public class NeoWs
     {
         [JsonProperty("near_earth_objects")]
         public NearEarthObjects NearEarthObjects { get; set; }
     }
-
 
     public class NearEarthObjects
     {

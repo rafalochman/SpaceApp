@@ -2,7 +2,6 @@
 
 namespace NASAapp.Models
 {
-
     public class Apod
     {
         [JsonProperty("date")]

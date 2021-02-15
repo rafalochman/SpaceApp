@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NASAapp.Models
 {
-
     public class MarsWeather
     {
         public Sole[] Soles { get; set; }
@@ -68,6 +63,5 @@ namespace NASAapp.Models
         [JsonProperty("max_gts_temp")]
         public string MaxGtsTemp { get; set; }
     }
-
 
 }
