@@ -32,7 +32,7 @@ namespace NASAapp.Services
                     string content = response.Content.ReadAsStringAsync().Result;
                     var marsWeather = JsonConvert.DeserializeObject<MarsWeather>(content);
 
-                    LatestSol = marsWeather.soles[0].sol;
+                    LatestSol = marsWeather.Soles[0].Sol;
                     solesWeatherList = GetSolesWeatherList(marsWeather, sol);
                 }
                 catch (HttpRequestException e)
@@ -52,13 +52,13 @@ namespace NASAapp.Services
             List<Sole> solesWeatherList = new List<Sole>();
             if(sol == null)
             {
-                solesWeatherList.Add(marsWeather.soles[0]);
+                solesWeatherList.Add(marsWeather.Soles[0]);
             }
             else
             {
-                if(Array.Exists(marsWeather.soles, x => x.sol == sol.ToString()))
+                if(Array.Exists(marsWeather.Soles, x => x.Sol == sol.ToString()))
                 {
-                    solesWeatherList.Add(Array.Find(marsWeather.soles, x => x.sol == sol.ToString()));
+                    solesWeatherList.Add(Array.Find(marsWeather.Soles, x => x.Sol == sol.ToString()));
                 }
                 else
                 {
@@ -68,15 +68,15 @@ namespace NASAapp.Services
 
             for(int i = 1; i < 7; i++)
             {
-                solesWeatherList.Add(marsWeather.soles[i]);
+                solesWeatherList.Add(marsWeather.Soles[i]);
             }
 
             foreach(Sole sole in solesWeatherList)
             {
                 try
                 {
-                    DateTime dateTime = DateTime.Parse(sole.terrestrial_date);
-                    sole.terrestrial_date = dateTime.ToString("dd/MM/yyyy");
+                    DateTime dateTime = DateTime.Parse(sole.Date);
+                    sole.Date = dateTime.ToString("dd/MM/yyyy");
                 }
                 catch(FormatException e)
                 {
@@ -90,14 +90,14 @@ namespace NASAapp.Services
         {
             Sole sole = new Sole
             {
-                sol = sol.ToString(),
-                terrestrial_date = "N/A",
-                min_temp = "N/A",
-                max_temp = "N/A",
-                pressure = "N/A",
-                local_uv_irradiance_index = "N/A",
-                sunrise = "N/A",
-                sunset = "N/A"
+                Sol = sol.ToString(),
+                Date = "N/A",
+                MinTemp = "N/A",
+                MaxTemp = "N/A",
+                Pressure = "N/A",
+                UvIrradiance = "N/A",
+                Sunrise = "N/A",
+                Sunset = "N/A"
             };
             return sole;
         }

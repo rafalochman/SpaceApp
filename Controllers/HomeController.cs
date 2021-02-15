@@ -26,7 +26,7 @@ namespace NASAapp.Controllers
         {
             var homeService = new HomeService(_logger);
             Apod apod = homeService.GetApod();
-            if(apod.date == null)
+            if(apod.Date == null)
             {
                 return RedirectToAction("Error");
             }

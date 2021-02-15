@@ -29,8 +29,8 @@ namespace NASAapp.Services
                     string content = response.Content.ReadAsStringAsync().Result;
                     apod = JsonConvert.DeserializeObject<Apod>(content);
 
-                    DateTime dateTime = DateTime.Parse(apod.date);
-                    apod.date = dateTime.ToString("dd/MM/yyyy");
+                    DateTime dateTime = DateTime.Parse(apod.Date);
+                    apod.Date = dateTime.ToString("dd/MM/yyyy");
                 }
                 catch (HttpRequestException e)
                 {

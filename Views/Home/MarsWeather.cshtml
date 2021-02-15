@@ -15,10 +15,10 @@
         <p>Curiosity is taking daily weather measurements at Gale Crater in the southern hemisphere of Mars, near the equator.</p>
 
         <div id="mainSolDate">
-            <p><span>Sol @Model.First().sol</span><br />@Model.First().terrestrial_date</p>
+            <p><span>Sol @Model.First().Sol</span><br />@Model.First().Date</p>
         </div>
         <div id="mainSolWeather">
-            <p><span>High: @Model.First().max_temp &deg;C</span><br />Low: @Model.First().min_temp &deg;C</p>
+            <p><span>High: @Model.First().MaxTemp &deg;C</span><br />Low: @Model.First().MinTemp &deg;C</p>
         </div>
     </div>
 
@@ -26,9 +26,9 @@
         @foreach (var item in Model.Skip(1))
         {
             <div class="dayContainer">
-                <p><span>Sol @Html.DisplayFor(modelItem => item.sol)</span><br />@Html.DisplayFor(modelItem => item.terrestrial_date)</p>
+                <p><span>Sol @Html.DisplayFor(modelItem => item.Sol)</span><br />@Html.DisplayFor(modelItem => item.Date)</p>
                 <hr>
-                <p>High: @Html.DisplayFor(modelItem => item.min_temp) &deg;C<br />Low: @Html.DisplayFor(modelItem => item.max_temp) &deg;C</p>
+                <p>High: @Html.DisplayFor(modelItem => item.MinTemp) &deg;C<br />Low: @Html.DisplayFor(modelItem => item.MaxTemp) &deg;C</p>
             </div>
         }
     </div>
@@ -72,25 +72,25 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.sol)
+                    @Html.DisplayFor(modelItem => item.Sol)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.terrestrial_date)
+                    @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.max_temp) &deg;C
+                    @Html.DisplayFor(modelItem => item.MaxTemp) &deg;C
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.min_temp) &deg;C
+                    @Html.DisplayFor(modelItem => item.MinTemp) &deg;C
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.pressure) Pa
+                    @Html.DisplayFor(modelItem => item.Pressure) Pa
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.sunrise)
+                    @Html.DisplayFor(modelItem => item.Sunrise)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.sunset)
+                    @Html.DisplayFor(modelItem => item.Sunset)
                 </td>
             </tr>
         }

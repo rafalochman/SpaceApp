@@ -43,17 +43,17 @@ namespace NASAapp.Services
         private List<History> CreateHistoryList(NeoLookup neoLookup)
         {
             List<History> historyList = new List<History>();
-            foreach (CloseApproachData data in neoLookup.close_approach_data)
+            foreach (CloseApproachData data in neoLookup.CloseApproachData)
             {
                 History history = new History
                 {
-                    Id = neoLookup.id,
-                    Name = neoLookup.name,
-                    Date = data.close_approach_date_full.ToString("dd/MM/yyyy"),
-                    Time = data.close_approach_date_full.ToString("HH:mm"),
-                    RelativeVelocity = Math.Round(data.relative_velocity.kilometers_per_second, 2),
-                    MissDistance = Math.Round(data.miss_distance.kilometers, 2),
-                    OrbitingBody = data.orbiting_body
+                    Id = neoLookup.Id,
+                    Name = neoLookup.Name,
+                    Date = data.CloseApproachDateFull.ToString("dd/MM/yyyy"),
+                    Time = data.CloseApproachDateFull.ToString("HH:mm"),
+                    RelativeVelocity = Math.Round(data.RelativeVelocity.KilometersPerSecond, 2),
+                    MissDistance = Math.Round(data.MissDistance.Kilometers, 2),
+                    OrbitingBody = data.OrbitingBody
                 };
                 historyList.Add(history);
             }

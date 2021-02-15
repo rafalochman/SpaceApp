@@ -45,19 +45,19 @@ namespace NASAapp.Services
         private List<Asteroid> CreateAsteroidsList(NeoWs neoWs)
         {
             List<Asteroid> asteroidList = new List<Asteroid>();
-            foreach (Asteroids ast in neoWs.near_earth_objects.asteroids)
+            foreach (Asteroids ast in neoWs.NearEarthObjects.Asteroids)
             {
                 Asteroid asteroid = new Asteroid
                 {
-                    Id = ast.id,
-                    Name = ast.name,
-                    EstimatedDiameterMin = Math.Round(ast.estimated_diameter.meters.estimated_diameter_min, 2),
-                    EstimatedDiameterMax = Math.Round(ast.estimated_diameter.meters.estimated_diameter_max, 2),
-                    Hazardous = ast.is_potentially_hazardous_asteroid,
-                    Time = ast.close_approach_data[0].close_approach_date_full.ToString("HH:mm"),
-                    Date = ast.close_approach_data[0].close_approach_date_full.ToString("dd/MM/yyyy"),
-                    RelativeVelocity = Math.Round(ast.close_approach_data[0].relative_velocity.kilometers_per_second, 2),
-                    MissDistance = Math.Round(ast.close_approach_data[0].miss_distance.kilometers, 2)
+                    Id = ast.Id,
+                    Name = ast.Name,
+                    EstimatedDiameterMin = Math.Round(ast.EstimatedDiameter.Meters.EstimatedDiameterMin, 2),
+                    EstimatedDiameterMax = Math.Round(ast.EstimatedDiameter.Meters.EstimatedDiameterMax, 2),
+                    Hazardous = ast.PotentiallyHazardous,
+                    Time = ast.CloseApproachData[0].CloseApproachDateFull.ToString("HH:mm"),
+                    Date = ast.CloseApproachData[0].CloseApproachDateFull.ToString("dd/MM/yyyy"),
+                    RelativeVelocity = Math.Round(ast.CloseApproachData[0].RelativeVelocity.KilometersPerSecond, 2),
+                    MissDistance = Math.Round(ast.CloseApproachData[0].MissDistance.Kilometers, 2)
                 };
                 asteroidList.Add(asteroid);
             }
