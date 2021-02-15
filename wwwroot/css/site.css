@@ -148,6 +148,7 @@ body {
     padding-top: 20px;
     margin-right: 16px;
     margin-top: 16px;
+    padding-bottom: 4px;
 }
 
 .dayContainer > p > span {
@@ -166,15 +167,85 @@ body {
     width: 50%;
 }
 
-@media (min-width: 500px) {
-    #mainWeather {
-        padding-left: 60px;
-    }
+#jpl {
+    float: right;
+}
 
-    #fiveDaysContainer {
-        padding-left: 60px;
-        padding-right: 40px;
-    }
+#weatherTable {
+    margin-top: 40px;
+}
+
+td {
+    min-width: 58px;
+}
+
+#asteroidsContainer {
+    margin-top: 24px;
+    background: url("../images/asteroid.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#asteroidsTitle {
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 140px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+#asteroidsTitle > h3 {
+    font-weight: bold;
+}
+
+#asteroidsTitle > p {
+    font-size: 120%;
+}
+
+.asteroidsNumber {
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 2px;
+    font-size: 130%;
+}
+
+.asteroidsNumber > span {
+    font-weight: bold;
+    font-size: 110%;
+}
+
+#threeAsteroidsContainer {
+    padding-left: 20px;
+    padding-bottom: 144px;
+    margin-top: 24px;
+}
+
+.astContainer {
+    width: 142px;
+    background: rgba(128, 128, 128, 0.3);
+    display: inline-block;
+    text-align: center;
+    padding-top: 20px;
+    margin-right: 16px;
+    padding-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+#astContainerTitle {
+    height: calc(var(--line-height) * 2em);
+    --line-height: 1.0;
+    font-weight: bold;
+    font-size: 130%;
+}
+
+.astContainer > hr {
+    background-color: white;
+}
+
+#asteroidsTable {
+    margin-top: 50px;
 }
 
 @media (min-width: 992px) {
@@ -198,16 +269,35 @@ body {
     #solForm {
         width: 30%;
     }
+
+    #asteroidsTitle {
+        padding-left: 60px;
+        width: 56%;
+    }
+
+    .asteroidsNumber {
+        padding-left: 60px;
+    }
+
+    #threeAsteroidsContainer {
+        padding-left: 60px;
+        padding-right: 40px;
+    }
+
 }
 
-#jpl {
-    float: right;
+@media (min-width: 500px) {
+    #mainWeather {
+        padding-left: 60px;
+    }
+
+    #fiveDaysContainer {
+        padding-left: 60px;
+        padding-right: 40px;
+    }
+
+    .astContainer {
+        width: 152px;
+    }
 }
 
-#weatherTable {
-    margin-top: 40px;
-}
-
-td {
-    min-width: 58px;
-}

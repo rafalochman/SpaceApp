@@ -53,15 +53,22 @@ namespace NASAapp.Services
                     Name = ast.Name,
                     EstimatedDiameterMin = Math.Round(ast.EstimatedDiameter.Meters.EstimatedDiameterMin, 2),
                     EstimatedDiameterMax = Math.Round(ast.EstimatedDiameter.Meters.EstimatedDiameterMax, 2),
-                    Hazardous = ast.PotentiallyHazardous,
                     Time = ast.CloseApproachData[0].CloseApproachDateFull.ToString("HH:mm"),
                     Date = ast.CloseApproachData[0].CloseApproachDateFull.ToString("dd/MM/yyyy"),
                     RelativeVelocity = Math.Round(ast.CloseApproachData[0].RelativeVelocity.KilometersPerSecond, 2),
-                    MissDistance = Math.Round(ast.CloseApproachData[0].MissDistance.Kilometers, 2)
+                    MissDistance = Decimal.ToInt32(ast.CloseApproachData[0].MissDistance.Kilometers)
                 };
+                if (ast.PotentiallyHazardous == "false")
+                {
+                    asteroid.Hazardous = "No";
+                }
+                else
+                {
+                    asteroid.Hazardous = "Yes";
+                }
                 asteroidList.Add(asteroid);
             }
-            asteroidList.Sort((x, y) => x.Time.CompareTo(y.Time));
+            asteroidList.Sort((x, y) => y.EstimatedDiameterMin.CompareTo(x.EstimatedDiameterMin));
 
             return asteroidList;
         }
