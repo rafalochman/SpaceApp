@@ -339,5 +339,5 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /Logs
-/Properties/ServiceDependencies/NASAapp - Web Deploy
 /Configs
+/Properties/ServiceDependencies/SpaceApplication - Web Deploy/profile.arm.json
