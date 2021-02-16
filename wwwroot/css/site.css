@@ -222,7 +222,7 @@ td {
 }
 
 .astContainer {
-    width: 142px;
+    width: 152px;
     background: rgba(128, 128, 128, 0.3);
     display: inline-block;
     text-align: center;
@@ -302,7 +302,7 @@ td {
     }
 
     .astContainer {
-        width: 152px;
+        width: 162px;
     }
 }
 
