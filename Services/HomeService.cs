@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using NASAapp.Configs;
-using NASAapp.Models;
+using SpaceApp.Configs;
+using SpaceApp.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 
-namespace NASAapp.Services
+namespace SpaceApp.Services
 {
     public class HomeService
     {

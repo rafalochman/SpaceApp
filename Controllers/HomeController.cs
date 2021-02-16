@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using NASAapp.Models;
+using SpaceApp.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using NASAapp.Configs;
-using NASAapp.Services;
+using SpaceApp.Configs;
+using SpaceApp.Services;
 using System.Linq;
 
-namespace NASAapp.Controllers
+namespace SpaceApp.Controllers
 {
     public class HomeController : Controller
     {

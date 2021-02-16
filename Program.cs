@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace NASAapp
+namespace SpaceApp
 {
     public class Program
     {

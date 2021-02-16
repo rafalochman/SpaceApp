@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.IO;
 
-namespace NASAapp
+namespace SpaceApp
 {
     public class Startup
     {

@@ -1,4 +1,4 @@
-﻿namespace NASAapp.Models
+﻿namespace SpaceApp.Models
 {
     public class History
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace NASAapp.Models
+namespace SpaceApp.Models
 {
     public class NeoLookup
     {

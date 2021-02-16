@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using NASAapp.Models;
+using SpaceApp.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace NASAapp.Services
+namespace SpaceApp.Services
 {
     public class MarsWeatherService
     {

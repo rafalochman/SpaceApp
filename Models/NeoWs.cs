@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace NASAapp.Models
+namespace SpaceApp.Models
 {
     public class NeoWs
     {
