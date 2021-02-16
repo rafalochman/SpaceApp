@@ -1,5 +1,5 @@
 # SpaceApp
-SpaceApp is a web aplication which shows astronomy picture of the day with description, current Mars weather and asteroids which miss earth. App uses NASA WebApi to provide data.
+SpaceApp is a web application which shows astronomy picture of the day with description, current Mars weather and asteroids which miss earth. App uses NASA WebApi to provide data.
 
 Application is hosted on Azure: https://spaceapplication.azurewebsites.net
 
