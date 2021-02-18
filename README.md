@@ -4,9 +4,9 @@ SpaceApp is a web application which shows astronomy picture of the day with desc
 Application is hosted on Azure: https://spaceapplication.azurewebsites.net
 
 ## Technologies
-* C#
+* .NET 5.0
 * ASP.NET Core MVC
-* .NET Framework 5.0
+* C#
 * HTML, CSS
 * Bootstrap
 
